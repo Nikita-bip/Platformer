@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
 
 public class Player : MonoBehaviour 
 {
@@ -21,6 +22,32 @@ public class Player : MonoBehaviour
         Jump
     }
 
+    private void Start()
+    {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _animatorController = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if (_moveState == MoveState.Jump)
+        {
+            if(_rigidbody2D.velocity == Vector2.zero)
+            {
+                Idle();
+            }
+        }
+        else if (_moveState == MoveState.Walk)
+        {
+            _walkTime -= Time.deltaTime;
+            
+            if(_walkTime <= 0)
+            {
+                Idle();
+            }
+        }
+    }
+    
     public void Move()
     {
         if (_moveState != MoveState.Jump)
@@ -52,31 +79,5 @@ public class Player : MonoBehaviour
     {
         _moveState = MoveState.Idle;
         _animatorController.Play("Idle");
-    }
-
-    private void Start()
-    {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _animatorController = GetComponent<Animator>();
-    }
-
-    private void Update()
-    {
-        if (_moveState == MoveState.Jump)
-        {
-            if(_rigidbody2D.velocity == Vector2.zero)
-            {
-                Idle();
-            }
-        }
-        else if (_moveState == MoveState.Walk)
-        {
-            _walkTime -= Time.deltaTime;
-            
-            if(_walkTime <= 0)
-            {
-                Idle();
-            }
-        }
     }
 }

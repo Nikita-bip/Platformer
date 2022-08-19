@@ -13,7 +13,7 @@ public class CircleSpawner : MonoBehaviour
 
         for (int i = 1; i <= _countOfCoins; i++)
         {
-            Instantiate(_coin, transform.position + new Vector3(step * i - size / 2f,  _spawnHeight), Quaternion.identity);
+            Instantiate(_coin, transform.position + new Vector3(step * i - size,  _spawnHeight), Quaternion.identity);
         }
     }
 }
