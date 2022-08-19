@@ -8,7 +8,6 @@ public class PlayerKeyboardController : MonoBehaviour
 
     private void Update () 
     {
-
         if (Player != null)
         {
 
