@@ -1,31 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    private int _coins = 0;
-    public TMP_Text coinsText;
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.TryGetComponent<Coin>(out Coin coin))
-        {
-            PickCoin(coin);
-        }
-    }
+    [SerializeField] private TMP_Text _coinsText;
 
-    private void PickCoin(Coin coin)
-    {
-        _coins++;
-        DisplayInfo();
-        Destroy(coin.gameObject);
-    }
+    public static int CountOfCoins = 0;
 
-    private void DisplayInfo()
+    private void Update()
     {
-        coinsText.text = _coins.ToString();
+        _coinsText.text = CountOfCoins.ToString();
     }
-    
 }
