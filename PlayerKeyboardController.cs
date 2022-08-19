@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerKeyboardController : MonoBehaviour {
-
+public class PlayerKeyboardController : MonoBehaviour 
+{
     public Player Player;
 
     private void Update () 
